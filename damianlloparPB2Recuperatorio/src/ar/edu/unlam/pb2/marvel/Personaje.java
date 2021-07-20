@@ -16,6 +16,11 @@ public abstract class Personaje {
 		this.poder = poder;
 	}
 	
+	//public abstract Integer triplicaPoder(Gema gema);
+	
+	//public abstract Integer duplicaPoder(Gema gema);
+	
+	public abstract Integer poderTotal(Gema gema);
 	
 
 }
