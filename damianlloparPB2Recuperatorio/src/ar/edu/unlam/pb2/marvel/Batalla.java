@@ -1,38 +1,98 @@
 package ar.edu.unlam.pb2.marvel;
 
+import java.util.Set;
 import java.util.TreeSet;
 
+
+
 public class Batalla {
-	
+
 	public String nombre;
-	//public TreeSet<Personaje>personajes;
-	public TreeSet<Heroe>heroes;
-	public TreeSet<Villano>villanos;
-	
+	public TreeSet<Personaje> personajes;
+	public TreeSet<Personaje> heroesGanadores;
+	public TreeSet<Personaje> villanosGanadores;
+
 	public Batalla(String nombre) {
-		this.nombre=nombre;
-		heroes=new TreeSet<>();
-		villanos = new TreeSet<>();
-		//personajes=new TreeSet<>();
+		this.nombre = nombre;
+		heroesGanadores = new TreeSet<>();
+		villanosGanadores = new TreeSet<>();
+		// personajes=new TreeSet<>();
 	}
-	
+
 	public Personaje batallaDePersonajes(Personaje heroe, Personaje villano) {
-		Personaje ganador=villano;
-		if(heroe.getPoder()>villano.getPoder()) {
-			ganador=heroe;
+		Personaje ganador = null;
+		if (heroe.getPoder() > villano.getPoder()) {
+			ganador = heroe;
+			personajes.add(heroe);
+
+		} else {
+			ganador = villano;
+			personajes.add(villano);
+
 		}
-		
+
 		return ganador;
 	}
-	
-	public Gema gemaDelPersonaje(Personaje personaje) {
+
+	public void listadoDeHeroesGanadores() {
+
+		for (Personaje personajeBuscado : personajes) {
+
+			if (personajeBuscado.getTipo().equalsIgnoreCase("heroe")) {
+				heroesGanadores.add(personajeBuscado);
+			} else {
+				villanosGanadores.add(personajeBuscado);
+			}
+
+		}
+
+	}
+
+	public TreeSet<Personaje> mostrarHeroesGanadoresPorOrden(){
+		OrdenPorNombre nuevoOrden = new OrdenPorNombre();
+		TreeSet<Personaje>nuevoTreeSet = new TreeSet<>(nuevoOrden);
+		nuevoTreeSet.addAll(heroesGanadores);
 		
-		
-		
-		return null;
+		return nuevoTreeSet;
 		
 	}
 	
+	public TreeSet<Personaje> mostrarVillanosGanadoresPorOrden(){
+		OrdenPorNombre nuevoOrden = new OrdenPorNombre();
+		TreeSet<Personaje>nuevoTreeSet = new TreeSet<>(nuevoOrden);
+		nuevoTreeSet.addAll(villanosGanadores);
+		
+		return (TreeSet<Personaje>) nuevoTreeSet.descendingSet();
+		
+	}
+	
+	public Boolean WorldDestroyed() throws WorldDestroyedException {
+		Boolean zafamos = false;
+		if(villanosGanadores.size()>heroesGanadores.size()) {
+			throw new WorldDestroyedException();
+		}else {
+			zafamos= true;
+		}
+		return zafamos;
+	}
+	
+
+	/*
+	 * 
+	 * public Set<Alumno> mostrarAlumnosPorApellido() {
+	 * 
+	 * OrdenPorApellido ordenPorApellido = new OrdenPorApellido();
+	 * TreeSet<Alumno>nuevoTreeSet = new TreeSet<>(ordenPorApellido);
+	 * nuevoTreeSet.addAll(alumnos); return nuevoTreeSet; }
+	 **/
+
+	public Integer heroesGanadores() {
+		return heroesGanadores.size();
+	}
+
+	public Integer villanosGanadores() {
+		return villanosGanadores.size();
+	}
 
 	public String getNombre() {
 		return nombre;
@@ -42,23 +102,36 @@ public class Batalla {
 		this.nombre = nombre;
 	}
 
-	public TreeSet<Heroe> getHeroes() {
-		return heroes;
+	public TreeSet<Personaje> getHeroes() {
+		return heroesGanadores;
 	}
 
-	public void setHeroes(TreeSet<Heroe> heroes) {
-		this.heroes = heroes;
+	public void setHeroes(TreeSet<Personaje> heroes) {
+		this.heroesGanadores = heroes;
 	}
 
-	public TreeSet<Villano> getVillanos() {
-		return villanos;
+	public TreeSet<Personaje> getVillanos() {
+		return villanosGanadores;
 	}
 
-	public void setVillanos(TreeSet<Villano> villanos) {
-		this.villanos = villanos;
+	public void setVillanos(TreeSet<Personaje> villanos) {
+		this.villanosGanadores = villanos;
 	}
-	
-	
-	
+
+	public TreeSet<Personaje> getHeroesGanadores() {
+		return heroesGanadores;
+	}
+
+	public void setHeroesGanadores(TreeSet<Personaje> heroesGanadores) {
+		this.heroesGanadores = heroesGanadores;
+	}
+
+	public TreeSet<Personaje> getVillanosGanadores() {
+		return villanosGanadores;
+	}
+
+	public void setVillanosGanadores(TreeSet<Personaje> villanosGanadores) {
+		this.villanosGanadores = villanosGanadores;
+	}
 
 }
