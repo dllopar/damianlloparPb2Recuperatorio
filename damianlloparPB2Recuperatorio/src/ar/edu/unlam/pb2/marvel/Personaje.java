@@ -22,10 +22,7 @@ public abstract class Personaje {
 	
 	
 	
-	
-	//public abstract Integer triplicaPoder(Gema gema);
-	
-	//public abstract Integer duplicaPoder(Gema gema);
+
 	
 	public String getNombre() {
 		return nombre;

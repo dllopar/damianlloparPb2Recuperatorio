@@ -36,24 +36,6 @@ public class Heroe extends Personaje {
 		
 	}
 
-	/*@Override
-	public Integer triplicaPoder(Gema gema) {
-		Integer poderTotal = 0;
 
-		if (gema.equals(Gema.MENTE) || gema.equals(Gema.PODER) || gema.equals(Gema.TIEMPO)) {
-			poderTotal = super.getPoder() * 3;
-		}
-		return poderTotal;
-	}
-
-	@Override
-	public Integer duplicaPoder(Gema gema) {
-		Integer poderTotal = 0;
-
-		if (gema.equals(Gema.ALMA) || gema.equals(Gema.ESPACIO) || gema.equals(Gema.REALIDAD)) {
-			poderTotal = super.getPoder() * 2;
-		}
-		return poderTotal;
-	}*/
 
 }

@@ -16,19 +16,19 @@ public class Batalla {
 		this.nombre = nombre;
 		heroesGanadores = new TreeSet<>();
 		villanosGanadores = new TreeSet<>();
-		// personajes=new TreeSet<>();
+		personajes=new TreeSet<>();
 	}
 
 	public Personaje batallaDePersonajes(Personaje heroe, Personaje villano) {
 		Personaje ganador = null;
 		if (heroe.getPoder() > villano.getPoder()) {
+			//personajes.add(heroe);
 			ganador = heroe;
-			personajes.add(heroe);
+			
 
 		} else {
+			//personajes.add(villano);
 			ganador = villano;
-			personajes.add(villano);
-
 		}
 
 		return ganador;
@@ -77,14 +77,6 @@ public class Batalla {
 	}
 	
 
-	/*
-	 * 
-	 * public Set<Alumno> mostrarAlumnosPorApellido() {
-	 * 
-	 * OrdenPorApellido ordenPorApellido = new OrdenPorApellido();
-	 * TreeSet<Alumno>nuevoTreeSet = new TreeSet<>(ordenPorApellido);
-	 * nuevoTreeSet.addAll(alumnos); return nuevoTreeSet; }
-	 **/
 
 	public Integer heroesGanadores() {
 		return heroesGanadores.size();

@@ -49,10 +49,10 @@ public class TestMarvel {
 
 		Batalla endGame = new Batalla("EndGame");
 
-		Heroe heroe = new Heroe(20, "Hulk", Gema.PODER, "heroe");
-		Villano villano = new Villano(100, "Hela", Gema.ALMA, "villano");
-		Heroe heroe2 = new Heroe(30, "ironman", Gema.PODER, "heroe");
-		Villano villano2 = new Villano(100, "soldado del invierno", Gema.ALMA, "villano");
+		Personaje heroe = new Heroe(20, "Hulk", Gema.PODER, "heroe");
+		Personaje villano = new Villano(100, "Hela", Gema.ALMA, "villano");
+		Personaje heroe2 = new Heroe(30, "ironman", Gema.PODER, "heroe");
+		Personaje villano2 = new Villano(100, "soldado del invierno", Gema.ALMA, "villano");
 
 		heroe.poderTotal(Gema.PODER);
 		villano.poderTotal(Gema.ALMA);
@@ -74,10 +74,10 @@ public class TestMarvel {
 
 		Batalla endGame = new Batalla("EndGame");
 
-		Heroe heroe = new Heroe(20, "Hulk", Gema.PODER, "heroe");
-		Villano villano = new Villano(100, "Hela", Gema.ALMA, "villano");
-		Heroe heroe2 = new Heroe(30, "ironman", Gema.PODER, "heroe");
-		Villano villano2 = new Villano(100, "soldado del invierno", Gema.ALMA, "villano");
+		Personaje heroe = new Heroe(20, "Hulk", Gema.PODER, "heroe");
+		Personaje villano = new Villano(100, "Hela", Gema.ALMA, "villano");
+		Personaje heroe2 = new Heroe(30, "ironman", Gema.PODER, "heroe");
+		Personaje villano2 = new Villano(100, "soldado del invierno", Gema.TIEMPO, "villano");
 
 		heroe.poderTotal(Gema.PODER);
 		villano.poderTotal(Gema.ALMA);
@@ -90,5 +90,34 @@ public class TestMarvel {
 		endGame.WorldDestroyed();
 
 	}
+	
+	@Test
+	public void testQuePermiteOrdenarALosHeroesPorNombre() {
+		
+		Batalla endGame = new Batalla("EndGame");
+		
+		Personaje heroe = new Heroe(200, "Hulk", Gema.PODER, "heroe");
+		Personaje villano = new Villano(10, "Hela", Gema.ALMA, "villano");
+		Personaje heroe2 = new Heroe(300, "ironman", Gema.REALIDAD, "heroe");
+		Personaje villano2 = new Villano(10, "soldado del invierno", Gema.TIEMPO, "villano");
+		Personaje heroe3 = new Heroe(300, "thor", Gema.MENTE, "heroe");
+		Personaje villano3 = new Villano(10, "soldado del invierno", Gema.ESPACIO, "villano");
+
+		heroe.poderTotal(Gema.PODER);
+		villano.poderTotal(Gema.ALMA);
+		heroe2.poderTotal(Gema.REALIDAD);
+		villano2.poderTotal(Gema.TIEMPO);
+		heroe3.poderTotal(Gema.MENTE);
+		villano3.poderTotal(Gema.ESPACIO);
+		
+
+		endGame.batallaDePersonajes(heroe, villano);
+		endGame.batallaDePersonajes(heroe2, villano2);
+		endGame.batallaDePersonajes(heroe3, villano3);
+		
+		assertEquals(endGame.heroesGanadores.first(), heroe);
+		assertEquals(endGame.heroesGanadores.last(), heroe3);
+	}
+	
 
 }
