@@ -40,7 +40,6 @@ public abstract class Personaje {
 		this.tipo = tipo;
 	}
 
-	public abstract Integer poderTotal(Gema gema);
 	
 
 }

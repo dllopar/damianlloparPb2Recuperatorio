@@ -1,5 +1,6 @@
 package ar.edu.unlam.pb2.marvel;
 
+import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -17,6 +18,22 @@ public class Batalla {
 		heroesGanadores = new TreeSet<>();
 		villanosGanadores = new TreeSet<>();
 		personajes=new TreeSet<>();
+	}
+	
+	public Personaje asignarGemaAUnPersonaje() {
+		
+		Random rand;		
+		rand = new Random();
+		
+		for (Personaje personaje : personajes) {
+			Integer aleatorio = rand.nextInt(personajes.size());
+			
+		}
+		
+		return null;
+		
+		//.get(rand.nextInt(personajes.size()))
+		
 	}
 
 	public Personaje batallaDePersonajes(Personaje heroe, Personaje villano) {

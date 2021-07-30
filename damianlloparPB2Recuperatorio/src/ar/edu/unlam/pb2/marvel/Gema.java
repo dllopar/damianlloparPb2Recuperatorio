@@ -1,7 +1,7 @@
 package ar.edu.unlam.pb2.marvel;
 
-public enum Gema {
+public class Gema {
 	
-	ALMA, TIEMPO, ESPACIO, MENTE, REALIDAD, PODER
+	
 
 }
