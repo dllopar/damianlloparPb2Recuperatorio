@@ -8,43 +8,32 @@ import java.util.TreeSet;
 
 public class Batalla {
 
-	public String nombre;
-	public TreeSet<Personaje> personajes;
-	public TreeSet<Personaje> heroesGanadores;
-	public TreeSet<Personaje> villanosGanadores;
+	private String nombre;
+	private TreeSet<Personaje> personajes;
+	private TreeSet<Personaje> heroesGanadores;
+	private TreeSet<Personaje> villanosGanadores;
 
 	public Batalla(String nombre) {
 		this.nombre = nombre;
+		personajes = new TreeSet<>();
 		heroesGanadores = new TreeSet<>();
 		villanosGanadores = new TreeSet<>();
-		personajes=new TreeSet<>();
+		
 	}
-	
-	public Personaje asignarGemaAUnPersonaje() {
-		
-		Random rand;		
-		rand = new Random();
-		
-		for (Personaje personaje : personajes) {
-			Integer aleatorio = rand.nextInt(personajes.size());
-			
-		}
-		
-		return null;
-		
-		//.get(rand.nextInt(personajes.size()))
+
+	public Boolean agregarPersonaje(Personaje personaje) {
+		return personajes.add(personaje);
 		
 	}
 
 	public Personaje batallaDePersonajes(Personaje heroe, Personaje villano) {
 		Personaje ganador = null;
 		if (heroe.getPoder() > villano.getPoder()) {
-			//personajes.add(heroe);
+			heroesGanadores.add(heroe);
 			ganador = heroe;
-			
 
 		} else {
-			//personajes.add(villano);
+			villanosGanadores.add(villano);
 			ganador = villano;
 		}
 
@@ -65,35 +54,73 @@ public class Batalla {
 
 	}
 
-	public TreeSet<Personaje> mostrarHeroesGanadoresPorOrden(){
+	public TreeSet<Personaje> mostrarHeroesGanadoresPorOrden() {
 		OrdenPorNombre nuevoOrden = new OrdenPorNombre();
-		TreeSet<Personaje>nuevoTreeSet = new TreeSet<>(nuevoOrden);
+		TreeSet<Personaje> nuevoTreeSet = new TreeSet<>(nuevoOrden);
 		nuevoTreeSet.addAll(heroesGanadores);
-		
+
 		return nuevoTreeSet;
-		
+
 	}
-	
-	public TreeSet<Personaje> mostrarVillanosGanadoresPorOrden(){
+
+	public TreeSet<Personaje> mostrarVillanosGanadoresPorOrden() {
 		OrdenPorNombre nuevoOrden = new OrdenPorNombre();
-		TreeSet<Personaje>nuevoTreeSet = new TreeSet<>(nuevoOrden);
+		TreeSet<Personaje> nuevoTreeSet = new TreeSet<>(nuevoOrden);
 		nuevoTreeSet.addAll(villanosGanadores);
-		
+
 		return (TreeSet<Personaje>) nuevoTreeSet.descendingSet();
-		
+
 	}
-	
+
 	public Boolean WorldDestroyed() throws WorldDestroyedException {
 		Boolean zafamos = false;
-		if(villanosGanadores.size()>heroesGanadores.size()) {
+		if (villanosGanadores.size() > heroesGanadores.size()) {
 			throw new WorldDestroyedException();
-		}else {
-			zafamos= true;
+		} else {
+			zafamos = true;
 		}
 		return zafamos;
 	}
-	
 
+	public Boolean darGema(Gema gema, Personaje personaje) {
+		Boolean aumentaPoder = false;
+		if(personaje.getTipo().equals("heroe") && contarGemasHeroes() <= 3) {
+			personaje.setGema(gema);
+			gema.incrementarPoder(personaje);
+			aumentaPoder = true;
+		}
+		if(contarGemasVillanos() <= 3) {
+			personaje.setGema(gema);
+			gema.incrementarPoder(personaje);
+			aumentaPoder = true;
+		}
+		
+		return aumentaPoder;
+	}
+
+	public Integer contarGemasHeroes() {
+		Integer contadorHeroe = 0;
+
+		for (Personaje personaje2 : personajes) {
+			if (personaje2.getTipo().equals("heroe") && personaje2.getGema() != null) {
+				contadorHeroe++;
+
+			}
+		}
+
+		return contadorHeroe;
+	}
+
+	public Integer contarGemasVillanos() {
+		Integer contadorVillano = 0;
+		for (Personaje personaje2 : personajes) {
+			if (personaje2.getTipo().equals("villano") && personaje2.getGema() != null) {
+				contadorVillano++;
+			}
+		}
+		return contadorVillano;
+	}
+	
 
 	public Integer heroesGanadores() {
 		return heroesGanadores.size();
