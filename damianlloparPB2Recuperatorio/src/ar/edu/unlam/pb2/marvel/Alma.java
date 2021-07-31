@@ -6,6 +6,7 @@ public class Alma extends Gema implements Hechizable{
 	public Integer incrementarPoder(Personaje nuevo) {
 
 		Integer poderFinal = nuevo.getPoder() * 2;
+		nuevo.setPoder(poderFinal);
 		return poderFinal;
 	}
 	

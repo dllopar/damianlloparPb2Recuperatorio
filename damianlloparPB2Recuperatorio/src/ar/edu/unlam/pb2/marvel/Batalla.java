@@ -1,7 +1,9 @@
 package ar.edu.unlam.pb2.marvel;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Set;
+import java.util.SortedSet;
 import java.util.TreeSet;
 
 
@@ -9,7 +11,7 @@ import java.util.TreeSet;
 public class Batalla {
 
 	private String nombre;
-	private TreeSet<Personaje> personajes;
+	private Set<Personaje> personajes;
 	private TreeSet<Personaje> heroesGanadores;
 	private TreeSet<Personaje> villanosGanadores;
 
@@ -84,12 +86,12 @@ public class Batalla {
 
 	public Boolean darGema(Gema gema, Personaje personaje) {
 		Boolean aumentaPoder = false;
-		if(personaje.getTipo().equals("heroe") && contarGemasHeroes() <= 3) {
+		if(personaje.getTipo().equals("heroe") && contarGemasHeroes() < 3) {
 			personaje.setGema(gema);
 			gema.incrementarPoder(personaje);
 			aumentaPoder = true;
 		}
-		if(contarGemasVillanos() <= 3) {
+		else if(personaje.getTipo().equals("villano") &&contarGemasVillanos() < 3) {
 			personaje.setGema(gema);
 			gema.incrementarPoder(personaje);
 			aumentaPoder = true;
@@ -97,12 +99,15 @@ public class Batalla {
 		
 		return aumentaPoder;
 	}
+	
+	
+	
 
 	public Integer contarGemasHeroes() {
 		Integer contadorHeroe = 0;
 
 		for (Personaje personaje2 : personajes) {
-			if (personaje2.getTipo().equals("heroe") && personaje2.getGema() != null) {
+			if (personaje2.getTipo().equalsIgnoreCase("heroe") && personaje2.getGema() != null) {
 				contadorHeroe++;
 
 			}
@@ -119,6 +124,10 @@ public class Batalla {
 			}
 		}
 		return contadorVillano;
+	}
+	
+	public Integer cantidadDePersonajes() {
+		return personajes.size();
 	}
 	
 

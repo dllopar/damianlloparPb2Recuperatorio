@@ -8,5 +8,11 @@ public class Villano extends Personaje {
 
 	}
 
+	@Override
+	public int compareTo(Personaje o) {
+		// TODO Auto-generated method stub
+		return super.getNombre().compareTo(o.getNombre());
+	}
+
 
 }

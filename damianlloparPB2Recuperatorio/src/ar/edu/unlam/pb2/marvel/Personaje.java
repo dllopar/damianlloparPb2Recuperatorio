@@ -1,6 +1,6 @@
 package ar.edu.unlam.pb2.marvel;
 
-public abstract class Personaje {
+public abstract class Personaje implements Comparable<Personaje> {
 	
 	private Integer poder;
 	private String tipo;

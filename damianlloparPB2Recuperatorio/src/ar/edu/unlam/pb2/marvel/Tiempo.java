@@ -6,6 +6,7 @@ public class Tiempo extends Gema implements Hechizable {
 	public Integer incrementarPoder(Personaje nuevo) {
 
 		Integer poderFinal = nuevo.getPoder() * 3;
+		nuevo.setPoder(poderFinal);
 		return poderFinal;
 	}
 
